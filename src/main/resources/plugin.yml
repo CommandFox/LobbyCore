@@ -1,0 +1,9 @@
+name: LobbyCore
+author: Warvale
+version: 1.0-DEV
+main: net.warvale.lobbycore.LobbyCoreyCore
+
+commands:
+ lobbycore:
+  description: Verify installation and version of LobbyCore!
+  aliases: [lc]
