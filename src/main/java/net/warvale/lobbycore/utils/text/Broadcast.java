@@ -4,6 +4,8 @@ import net.warvale.lobbycore.LobbyCore;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.logging.Level;
+
 public class Broadcast {
 
     public enum BroadcastType {
@@ -12,8 +14,8 @@ public class Broadcast {
         BASIC
     }
 
-    public static void toConsole(String message) {
-        System.out.println("[LobbyCore v" + LobbyCore.getVersion() + "] " + message);
+    public static void toConsole(Level level, String message) {
+        LobbyCore.getInstance().getLogger().log(level, "[LobbyCore v" + LobbyCore.getVersion() + "] " + message);
     }
 
     public static void toPlayer(Player player, String message) {

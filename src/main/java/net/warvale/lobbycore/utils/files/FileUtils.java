@@ -4,6 +4,7 @@ import net.warvale.lobbycore.LobbyCore;
 import net.warvale.lobbycore.utils.text.Broadcast;
 
 import java.io.*;
+import java.util.logging.Level;
 
 /**
  * Created by Draem on 5/19/2017.
@@ -38,7 +39,7 @@ public class FileUtils {
 
     public static void loadFile(String file) {
         File t = new File(LobbyCore.getInstance().getDataFolder(), file);
-        Broadcast.toConsole("Writing new file: " + t.getAbsolutePath());
+        Broadcast.toConsole(Level.INFO, "Writing new file: " + t.getAbsolutePath());
 
         try {
             t.createNewFile();
@@ -55,14 +56,14 @@ public class FileUtils {
             isr.close();
             br.close();
             out.close();
-            Broadcast.toConsole("Loaded config: " + file + " successfully!");
+            Broadcast.toConsole(Level.INFO, "Loaded config: " + file + " successfully!");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static boolean moveFile(File oldConfig) {
-        Broadcast.toConsole("Moving outdated config file: " + oldConfig.getName());
+        Broadcast.toConsole(Level.INFO, "Moving outdated config file: " + oldConfig.getName());
         String name = oldConfig.getName();
         File configBackup = new File(LobbyCore.getInstance().getDataFolder(), getNextName(name, 0));
         return oldConfig.renameTo(configBackup);

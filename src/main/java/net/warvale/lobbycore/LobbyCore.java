@@ -5,6 +5,8 @@ import net.warvale.lobbycore.config.ConfigManager;
 import net.warvale.lobbycore.utils.text.Broadcast;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public class LobbyCore extends JavaPlugin {
 
     private static LobbyCore instance;
@@ -14,19 +16,19 @@ public class LobbyCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Broadcast.toConsole("Loading...");
+        Broadcast.toConsole(Level.INFO, "Loading...");
         try {
             initialise();
-            Broadcast.toConsole("Successfully enabled!");
+            Broadcast.toConsole(Level.INFO, "Successfully enabled!");
         } catch(Exception ex) {
             ex.printStackTrace();
-            Broadcast.toConsole("Failed to enable!");
+            Broadcast.toConsole(Level.WARNING, "Failed to enable!");
         }
     }
 
     @Override
     public void onDisable() {
-        Broadcast.toConsole("Successfully disabled!");
+        Broadcast.toConsole(Level.INFO, "Successfully disabled!");
     }
 
     private void initialise() {

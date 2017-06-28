@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
+import java.util.logging.Level;
 
 public class ConfigManager {
 
@@ -27,7 +28,7 @@ public class ConfigManager {
     private File configFile;
 
     public void setup() {
-        Broadcast.toConsole("Setting up config(s)...");
+        Broadcast.toConsole(Level.INFO, "Setting up config(s)...");
 
         try {
             if (!LobbyCore.getInstance().getDataFolder().exists()) {
@@ -42,7 +43,7 @@ public class ConfigManager {
             reloadConfig();
         } catch (Exception ex) {
             ex.printStackTrace();
-            Broadcast.toConsole("Failed to setup config(s)!");
+            Broadcast.toConsole(Level.WARNING, "Failed to setup config(s)!");
         }
     }
 
@@ -52,7 +53,7 @@ public class ConfigManager {
             config.load(configFile);
         } catch (Exception ex) {
             ex.printStackTrace();
-            Broadcast.toConsole("Failed to reload config: config.yml!");
+            Broadcast.toConsole(Level.WARNING, "Failed to reload config: config.yml!");
         }
     }
 
@@ -61,7 +62,7 @@ public class ConfigManager {
             config.save(configFile);
         } catch(Exception ex) {
             ex.printStackTrace();
-            Broadcast.toConsole("Failed to save config: config.yml!");
+            Broadcast.toConsole(Level.WARNING, "Failed to save config: config.yml!");
         }
     }
 }

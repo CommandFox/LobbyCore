@@ -8,6 +8,7 @@ import org.bukkit.command.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class CommandHandler implements CommandExecutor, TabCompleter {
     private final LobbyCore plugin;
@@ -122,7 +123,7 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
 
             // if its null, broadcast the command name so I know which one it is (so I can fix it).
             if (pCmd == null) {
-                Broadcast.toConsole("Error from command: " + cmd.getName() + "!");
+                Broadcast.toConsole(Level.WARNING, "Error from command: " + cmd.getName() + "!");
                 continue;
             }
 
