@@ -16,13 +16,13 @@ public class LobbyCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().log(Level.INFO, "[LobbyCore] Loading...");
+        getLogger().log(Level.INFO, "Loading LobbyCore...");
         try {
             initialise();
             Broadcast.toConsole(Level.INFO, "Successfully enabled!");
         } catch(Exception ex) {
             ex.printStackTrace();
-            getLogger().log(Level.WARNING, "[LobbyCore] Failed to enable!");
+            getLogger().log(Level.WARNING, "Failed to enable LobbyCore!");
         }
     }
 
