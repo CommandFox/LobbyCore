@@ -1,6 +1,7 @@
 package net.warvale.lobbycore.commands;
 
 import net.warvale.lobbycore.LobbyCore;
+import net.warvale.lobbycore.commands.admin.ResetLobbyCommand;
 import net.warvale.lobbycore.commands.general.LobbyCoreCommand;
 import net.warvale.lobbycore.exceptions.CommandException;
 import net.warvale.lobbycore.utils.text.Broadcast;
@@ -112,6 +113,9 @@ public class CommandHandler implements CommandExecutor, TabCompleter {
      * Register all the commands.
      */
     public void registerCommands() {
+
+        // Admin
+        cmds.add(new ResetLobbyCommand());
 
         // Basic
         cmds.add(new LobbyCoreCommand());
