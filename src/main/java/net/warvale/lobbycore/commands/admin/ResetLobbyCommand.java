@@ -18,7 +18,7 @@ import java.util.logging.Level;
 
 public class ResetLobbyCommand extends AbstractCommand {
    public ResetLobbyCommand() {
-       super("reset-lobby", "");
+       super("resetlobby", "");
    }
 
     @Override

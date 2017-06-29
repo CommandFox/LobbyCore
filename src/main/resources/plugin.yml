@@ -8,6 +8,5 @@ commands:
   description: Verify installation and version of LobbyCore!
   aliases: [lc]
 
- reset-lobby:
+ resetlobby:
   description: Reset the lobby!
-  
