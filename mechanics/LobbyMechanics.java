@@ -11,20 +11,27 @@ import org.bukkit.util.Vector;
 /**
  * Created by CommandFox on 29/6/2017.
  */
-class LobbyMechanics implements Listener {
+public class LobbyMechanics implements Listener {
+    
+    private List<Player> jumpers = new ArrayList<>();
+    
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
-        Player player = event.getPlayer();
-
-        if(event.getAction() == Action.PHYSICAL) {
-            // Player triggers physical interaction event
-
-            if(event.getClickedBlock().getType() == Material.GOLD_PLATE) {
-                // Player steps on stone pressure plate
-
-                player.setVelocity(player.getLocation().getDirection().multiply(3));
-                player.setVelocity(new Vector(player.getVelocity().getX(), 1.0D, player.getVelocity().getZ()));
-
+    public void onPlayerMove(PlayerMoveEvent event) {
+        if (event.getTo().getBlock().getRelative(BlockFace.DOWN).getType().equals(Material.IRON_PLATE)
+                && event.getTo().getBlock().getRelative(BlockFace.DOWN, 2).getType().equals(Material.GOLD_BLOCK)) {
+            event.getPlayer().setVelocity(event.getPlayer().getLocation().getDirection().multiply(3));
+            event.getPlayer().setVelocity(new Vector(event.getPlayer().getVelocity().getX(), 1.0D, event.getPlayer().getVelocity().getZ()));
+            jumpers.add(event.getPlayer());
+        }
+    }
+   
+    @EventHandler
+    public void onPlayerDamage(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            if (event.getCause().equals(EntityDamageEvent.DamageCause.FALL) && jumpers.contains(player)) {
+                event.setDamage(0.0);
+                jumpers.remove(player);
             }
         }
     }
