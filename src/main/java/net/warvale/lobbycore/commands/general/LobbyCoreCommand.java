@@ -23,7 +23,7 @@ public class LobbyCoreCommand extends AbstractCommand {
             throw new CommandException("Only players can execute this command!");
         }
 
-        Broadcast.toSender(sender, Broadcast.BroadcastType.BASIC, "LobbyCore is currently running on version " + Chat.AQUA + LobbyCore.getVersion() + Chat.YELLOW + ".");
+        Broadcast.toSender(sender, Broadcast.BroadcastType.BASIC, "Currently running on version " + Chat.AQUA + LobbyCore.getVersion() + Chat.YELLOW + ".");
         return true;
     }
 
