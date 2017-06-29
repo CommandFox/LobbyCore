@@ -4,6 +4,7 @@ import net.warvale.lobbycore.commands.AbstractCommand;
 import net.warvale.lobbycore.exceptions.CommandException;
 import net.warvale.lobbycore.utils.files.FileUtils;
 import net.warvale.lobbycore.utils.text.Broadcast;
+import net.warvale.lobbycore.utils.text.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -31,7 +32,7 @@ public class ResetLobbyCommand extends AbstractCommand {
 
         Broadcast.toSender(sender, Broadcast.BroadcastType.BASIC, "Resetting the lobby...");
         try {
-            Broadcast.toSender(sender, Broadcast.BroadcastType.SUCCESS, "Successfully reset the lobby!");
+
             for(Player player : Bukkit.getOnlinePlayers()) {
                 if(player.getWorld().equals("void")) {
                     Location destA = new Location(Bukkit.getWorld("voidsrc"), 128, 48, 67);
@@ -39,6 +40,8 @@ public class ResetLobbyCommand extends AbstractCommand {
                     player.teleport(destA);
                     FileUtils.copyFolder(from, to);
                     player.teleport(destB);
+                    Broadcast.toSender(sender, Broadcast.BroadcastType.SUCCESS, "Successfully reset the lobby!");
+                    Bukkit.broadcastMessage(Chat.GOLD + "[LobbyCore]" + Chat.YELLOW + " The lobby has been reset!");
                 }
             }
         } catch (IOException e) {
